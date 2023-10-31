@@ -1,4 +1,4 @@
-package br.com.ro.AppContatos.AppContatos;
+package br.com.ro.AppContatos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

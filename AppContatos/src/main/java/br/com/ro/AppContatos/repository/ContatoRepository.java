@@ -1,9 +1,9 @@
-package br.com.ro.AppContatos.AppContatos.repository;
+package br.com.ro.AppContatos.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.ro.AppContatos.AppContatos.model.Contato;
+import br.com.ro.AppContatos.model.Contato;
 
 @Repository
 public interface ContatoRepository extends JpaRepository<Contato, Long> {

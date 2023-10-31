@@ -1,4 +1,4 @@
-package br.com.ro.AppContatos.AppContatos.service;
+package br.com.ro.AppContatos.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.ro.AppContatos.AppContatos.model.Contato;
-import br.com.ro.AppContatos.AppContatos.repository.ContatoRepository;
-import br.com.ro.AppContatos.AppContatos.service.interfaces.ContatoServiceInterface;
+import br.com.ro.AppContatos.model.Contato;
+import br.com.ro.AppContatos.repository.ContatoRepository;
+import br.com.ro.AppContatos.service.interfaces.ContatoServiceInterface;
 
 @Service
 public class ContatoService implements ContatoServiceInterface {

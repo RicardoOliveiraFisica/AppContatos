@@ -1,4 +1,4 @@
-package br.com.ro.AppContatos.AppContatos.model;
+package br.com.ro.AppContatos.model;
 
 import java.util.Objects;
 

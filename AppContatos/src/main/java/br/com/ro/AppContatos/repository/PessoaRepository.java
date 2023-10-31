@@ -1,9 +1,9 @@
-package br.com.ro.AppContatos.AppContatos.repository;
+package br.com.ro.AppContatos.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.ro.AppContatos.AppContatos.model.Pessoa;
+import br.com.ro.AppContatos.model.Pessoa;
 
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
