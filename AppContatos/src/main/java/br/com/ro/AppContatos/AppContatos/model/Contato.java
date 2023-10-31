@@ -88,9 +88,7 @@ public class Contato {
 			return false;
 		Contato other = (Contato) obj;
 		return Objects.equals(id, other.id);
-	}
-	
-	
+	}	
 	
 	
 }
