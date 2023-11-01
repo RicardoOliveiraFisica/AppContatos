@@ -28,13 +28,14 @@ public class PessoaResource {
 	public PessoaResource(PessoaService pessoaService) {
 		this.pessoaService = pessoaService;
 	}
-			
-	@GetMapping
-	public ResponseEntity<List<Pessoa>> getAllPessoas() {
-		List<Pessoa> pessoas = pessoaService.getAll();
-		if (pessoas == null)
+	
+	//@Operation(summary = “explicação do endpoint aqui!”)
+	@PostMapping
+	public ResponseEntity<Pessoa> save(@RequestBody Pessoa pessoa) {
+		Pessoa newPessoa = this.pessoaService.save(pessoa);
+		if (newPessoa == null)
 			return ResponseEntity.notFound().build();
-		return ResponseEntity.ok(pessoas);
+		return ResponseEntity.ok(newPessoa);		
 	}
 	
 	@GetMapping("/{id}")
@@ -45,14 +46,16 @@ public class PessoaResource {
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@PostMapping
-	public ResponseEntity<Pessoa> save(@RequestBody Pessoa pessoa) {
-		Pessoa newPessoa = this.pessoaService.save(pessoa);
-		if (newPessoa == null)
+	//GET /api/pessoas/maladireta/{id}
+			
+	@GetMapping
+	public ResponseEntity<List<Pessoa>> getAllPessoas() {
+		List<Pessoa> pessoas = pessoaService.getAll();
+		if (pessoas == null)
 			return ResponseEntity.notFound().build();
-		return ResponseEntity.ok(newPessoa);		
+		return ResponseEntity.ok(pessoas);
 	}
-	
+		
 	@PutMapping("/{id}")
 	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa pessoa) {
 		Pessoa upPessoa = this.pessoaService.updateById(id, pessoa);

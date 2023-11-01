@@ -1,6 +1,5 @@
 package br.com.ro.AppContatos.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +29,15 @@ public class ContatoService implements ContatoServiceInterface {
 		return this.contatoRepository.findById(id);
 	}
 
+/*
 	@Override
 	public List<Contato> getAll() {
 		return this.contatoRepository.findAll();
 	}
+*/
 
 	@Override
-	public Contato update(Contato contato) {
-		Long id = contato.getId();
+	public Contato updateById(Long id, Contato contato) {
 		Optional<Contato> upContato = this.contatoRepository.findById(id);
 		if (upContato.isPresent()) {
 			Contato newContato = upContato.get();;
