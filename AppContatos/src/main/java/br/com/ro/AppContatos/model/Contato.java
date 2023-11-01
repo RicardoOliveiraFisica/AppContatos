@@ -34,6 +34,8 @@ public class Contato {
 	@Column(nullable = false)
 	private String contato;
 
+	public Contato() {}
+	
 	public Contato(Long id, Pessoa pessoa, @Range(min = 0, max = 1) Integer tipoContato, String contato) {
 		this.id = id;
 		this.pessoa = pessoa;

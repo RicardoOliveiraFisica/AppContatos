@@ -32,6 +32,8 @@ public class Pessoa {
 	@Column(nullable = true)
 	private String uf;
 
+	public Pessoa() {}
+	
 	public Pessoa(Long id, String nome, String endereco, String cep, String cidade, String uf) {
 		this.id = id;
 		this.nome = nome;
