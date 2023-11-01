@@ -36,7 +36,7 @@ public class Contato {
 
 	public Contato() {}
 	
-	public Contato(Long id, Pessoa pessoa, @Range(min = 0, max = 1) Integer tipoContato, String contato) {
+	public Contato(Long id, Pessoa pessoa, Integer tipoContato, String contato) {
 		this.id = id;
 		this.pessoa = pessoa;
 		this.tipoContato = tipoContato;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ro.AppContatos.model.Pessoa;
+import br.com.ro.AppContatos.repository.ContatoRepository;
 import br.com.ro.AppContatos.repository.PessoaRepository;
 import br.com.ro.AppContatos.service.interfaces.PessoaServiceInterface;
 
@@ -16,7 +17,7 @@ public class PessoaService implements PessoaServiceInterface {
 	private PessoaRepository pessoaRepository;
 	
 	@Autowired
-	public PessoaService(PessoaRepository pessoaRepository) {
+	public PessoaService(PessoaRepository pessoaRepository, ContatoRepository contatoRepository) {
 		this.pessoaRepository = pessoaRepository;
 	}
 
