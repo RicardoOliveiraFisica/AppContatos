@@ -1,11 +1,13 @@
 package br.com.ro.AppContatos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ro.AppContatos.model.Contato;
 import br.com.ro.AppContatos.model.Pessoa;
 import br.com.ro.AppContatos.repository.ContatoRepository;
 import br.com.ro.AppContatos.repository.PessoaRepository;
@@ -15,10 +17,12 @@ import br.com.ro.AppContatos.service.interfaces.PessoaServiceInterface;
 public class PessoaService implements PessoaServiceInterface {
 	
 	private PessoaRepository pessoaRepository;
+	private ContatoRepository contatoRepository;
 	
 	@Autowired
 	public PessoaService(PessoaRepository pessoaRepository, ContatoRepository contatoRepository) {
 		this.pessoaRepository = pessoaRepository;
+		this.contatoRepository = contatoRepository;
 	}
 
 	@Override
@@ -62,8 +66,37 @@ public class PessoaService implements PessoaServiceInterface {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void deleteById(Long id) {
+		List<Contato> contatos = getAllContatosByIdPessoa(id);
+		for (Contato contato: contatos)
+			this.contatoRepository.deleteById(contato.getId());
 		this.pessoaRepository.deleteById(id);
+	}
+	
+	@Override
+	public Contato saveContatoByIdPessoa(Long idPessoa, Contato contato) {
+		Optional<Pessoa> opPessoa = this.pessoaRepository.findById(idPessoa);
+		if (opPessoa.isPresent()) {
+			Pessoa pessoa = opPessoa.get();
+			contato.setPessoa(pessoa);
+			return this.contatoRepository.save(contato);
+		}
+		return contato;
+	}
+	
+
+	@Override
+	public List<Contato> getAllContatosByIdPessoa(Long idPessoa) {
+		Optional<Pessoa> opPessoa = this.pessoaRepository.findById(idPessoa);
+		List<Contato> contatos = new ArrayList<>();
+		if (opPessoa.isPresent()) {
+			Pessoa pessoa = opPessoa.get();
+			List<Optional<Contato>> opContatos = this.contatoRepository.findAllByPessoa(pessoa);
+			
+			for (Optional<Contato> opContato: opContatos)
+				contatos.add(opContato.get());					
+		}
+		return contatos;
 	}
 
 }

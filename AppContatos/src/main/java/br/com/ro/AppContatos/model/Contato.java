@@ -1,11 +1,9 @@
 package br.com.ro.AppContatos.model;
 
-
 import java.util.Objects;
 
 import org.hibernate.validator.constraints.Range;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,14 +15,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contatos")
-public class Contato {
-	
+public class Contato  {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pessoa_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id", referencedColumnName = "id", nullable = false)
 	private Pessoa pessoa;	
 	
 	@Column(nullable = false)

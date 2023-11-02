@@ -27,15 +27,6 @@ public class ContatoResource {
 		this.contatoService = contatoService;
 	}
 	
-	/*
-	@GetMapping
-	public ResponseEntity<List<Contato>> getAll() {
-		List<Contato> contatos = this.contatoService.getAll();
-		if (contatos == null)
-			return ResponseEntity.notFound().build();
-		return ResponseEntity.ok(contatos);
-	}*/
-	
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Contato>> getById(@PathVariable Long id) {
 		Optional<Contato> contato = this.contatoService.getById(id);
@@ -54,7 +45,7 @@ public class ContatoResource {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Optional<Contato>> delete(@PathVariable Long id) {
-		this.contatoService.delete(id);
+		this.contatoService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);		
 	}
 }

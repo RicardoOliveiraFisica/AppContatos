@@ -1,21 +1,18 @@
 package br.com.ro.AppContatos.model;
 
-import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pessoas")
 public class Pessoa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -35,9 +32,9 @@ public class Pessoa {
 	@Column(nullable = true)
 	private String uf;
 	
-/*	@OneToMany(mappedBy="pessoa", cascade = CascadeType.REMOVE)
-	private List<Contato> contatos;
-*/
+//	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)//, orphanRemoval=true)	
+//	private List<Contato> contatos;
+
 	public Pessoa() {}
 	
 	public Pessoa(Long id, String nome, String endereco, String cep, String cidade, String uf) {
@@ -113,7 +110,8 @@ public class Pessoa {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(id, other.id);
 	}
-/*
+
+/*	
 	public List<Contato> getContatos() {
 		return contatos;
 	}
@@ -121,5 +119,6 @@ public class Pessoa {
 	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
 	}	
-*/
+*/ 
+	
 }

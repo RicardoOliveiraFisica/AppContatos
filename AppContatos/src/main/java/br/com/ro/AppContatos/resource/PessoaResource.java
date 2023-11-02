@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ro.AppContatos.model.Contato;
 import br.com.ro.AppContatos.model.Pessoa;
-import br.com.ro.AppContatos.service.ContatoService;
 import br.com.ro.AppContatos.service.PessoaService;
 
 @RestController
@@ -25,12 +24,10 @@ import br.com.ro.AppContatos.service.PessoaService;
 public class PessoaResource {
 	
 	private PessoaService pessoaService;
-	private ContatoService contatoService;
 	
 	@Autowired
-	public PessoaResource(PessoaService pessoaService, ContatoService contatoService) {
+	public PessoaResource(PessoaService pessoaService) {
 		this.pessoaService = pessoaService;
-		this.contatoService = contatoService;
 	}
 	
 	//@Operation(summary = “explicação do endpoint aqui!”)
@@ -70,13 +67,13 @@ public class PessoaResource {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Optional<Pessoa>> delete(@PathVariable Long id) {
-		this.pessoaService.delete(id);
+		this.pessoaService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@PostMapping("/{id}/contatos")
 	public ResponseEntity<Contato> saveContato(@PathVariable Long id, @RequestBody Contato contato) {
-		Contato newContato = this.contatoService.save(id, contato);
+		Contato newContato = this.pessoaService.saveContatoByIdPessoa(id, contato);
 		if (newContato == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(newContato);	
@@ -84,7 +81,7 @@ public class PessoaResource {
 	
 	@GetMapping("/{id}/contatos")
 	public ResponseEntity<List<Contato>> getAllContatosByPessoa(@PathVariable Long id) {
-		List<Contato> contatos = this.contatoService.getAllByPessoa(id);
+		List<Contato> contatos = this.pessoaService.getAllContatosByIdPessoa(id);
 		if (contatos == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(contatos);	
