@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ro.AppContatos.model.Contato;
 import br.com.ro.AppContatos.model.Pessoa;
+import br.com.ro.AppContatos.record.PessoaRecord;
 import br.com.ro.AppContatos.repository.ContatoRepository;
 import br.com.ro.AppContatos.repository.PessoaRepository;
 import br.com.ro.AppContatos.service.interfaces.PessoaServiceInterface;
@@ -33,6 +34,14 @@ public class PessoaService implements PessoaServiceInterface {
 	@Override
 	public Optional<Pessoa> getById(Long id) {
 		return this.pessoaRepository.findById(id);
+	}
+	
+
+	@Override
+	public Optional<PessoaRecord> getByIdMalaDireta(Long id) {
+		Optional<Pessoa> pessoa = this.pessoaRepository.findById(id);
+		PessoaRecord pessoaDTO = new PessoaRecord(pessoa.get());
+		return Optional.of(pessoaDTO);
 	}
 
 	@Override

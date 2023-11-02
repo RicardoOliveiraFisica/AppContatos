@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ro.AppContatos.model.Contato;
 import br.com.ro.AppContatos.model.Pessoa;
+import br.com.ro.AppContatos.record.PessoaRecord;
 import br.com.ro.AppContatos.service.PessoaService;
 
 @RestController
@@ -48,6 +49,13 @@ public class PessoaResource {
 	}
 	
 	//GET /api/pessoas/maladireta/{id}
+	@GetMapping("/maladireta/{id}")
+	public ResponseEntity<Optional<PessoaRecord>> getByIdMalaDireta(@PathVariable Long id) {
+		Optional<PessoaRecord> pessoaDTO = this.pessoaService.getByIdMalaDireta(id);
+		if (pessoaDTO == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(pessoaDTO);
+	}
 			
 	@GetMapping
 	public ResponseEntity<List<Pessoa>> getAllPessoas() {
