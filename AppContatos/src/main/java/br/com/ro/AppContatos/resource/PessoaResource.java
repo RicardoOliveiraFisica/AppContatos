@@ -87,9 +87,9 @@ public class PessoaResource {
 		return ResponseEntity.ok(newContato);	
 	}
 	
-	@GetMapping("/{id}/contatos")
-	public ResponseEntity<List<Contato>> getAllContatosByPessoa(@PathVariable Long id) {
-		List<Contato> contatos = this.pessoaService.getAllContatosByIdPessoa(id);
+	@GetMapping("/{idPessoa}/contatos")
+	public ResponseEntity<List<Contato>> getAllContatosByPessoa(@PathVariable Long idPessoa) {
+		List<Contato> contatos = this.pessoaService.getAllContatosByIdPessoa(idPessoa);
 		if (contatos == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(contatos);	
