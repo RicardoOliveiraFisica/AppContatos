@@ -26,11 +26,11 @@ public class Contato  {
 	private Pessoa pessoa;	
 	
 	@Column(nullable = false)
-	@Range(min = 0, max = 1)
+	@Range(min = 0, max = 1) //: 0 Telefone, 1 Celular
 	private Integer tipoContato;
 	
 	@Column(nullable = false)
-	private String contato;
+	private String contato;	
 
 	public Contato() {}
 	
@@ -89,6 +89,5 @@ public class Contato  {
 		Contato other = (Contato) obj;
 		return Objects.equals(id, other.id);
 	}	
-	
 	
 }

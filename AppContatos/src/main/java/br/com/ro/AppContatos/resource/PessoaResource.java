@@ -19,6 +19,7 @@ import br.com.ro.AppContatos.model.Contato;
 import br.com.ro.AppContatos.model.Pessoa;
 import br.com.ro.AppContatos.record.PessoaRecord;
 import br.com.ro.AppContatos.service.PessoaService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/pessoas") //http://localhost:8080/api/pessoas
@@ -31,7 +32,7 @@ public class PessoaResource {
 		this.pessoaService = pessoaService;
 	}
 	
-	//@Operation(summary = “explicação do endpoint aqui!”)
+	@Operation(summary = "(Cria uma nova Pessoa e persiste no Banco de Dados)")
 	@PostMapping
 	public ResponseEntity<Pessoa> save(@RequestBody Pessoa pessoa) {
 		Pessoa newPessoa = this.pessoaService.save(pessoa);
@@ -40,6 +41,7 @@ public class PessoaResource {
 		return ResponseEntity.ok(newPessoa);		
 	}
 	
+	@Operation(summary = "(Retorna do Banco de Dados os dados de uma Pessoa por ID)")
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Pessoa>> getById(@PathVariable Long id) {
 		Optional<Pessoa> pessoa = this.pessoaService.getById(id);
@@ -48,7 +50,7 @@ public class PessoaResource {
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	//GET /api/pessoas/maladireta/{id}
+	@Operation(summary = "(Retorna do Banco de Dados os dados de uma Pessoa por ID para mala direta)")
 	@GetMapping("/maladireta/{id}")
 	public ResponseEntity<Optional<PessoaRecord>> getByIdMalaDireta(@PathVariable Long id) {
 		Optional<PessoaRecord> pessoaDTO = this.pessoaService.getByIdMalaDireta(id);
@@ -57,6 +59,7 @@ public class PessoaResource {
 		return ResponseEntity.ok(pessoaDTO);
 	}
 			
+	@Operation(summary = "(Lista todas as Pessoas armazenadas no Banco de Dados)")
 	@GetMapping
 	public ResponseEntity<List<Pessoa>> getAllPessoas() {
 		List<Pessoa> pessoas = pessoaService.getAll();
@@ -65,6 +68,7 @@ public class PessoaResource {
 		return ResponseEntity.ok(pessoas);
 	}
 		
+	@Operation(summary = "(Atualiza no Banco de Dados os dados de uma Pessoa existente)")
 	@PutMapping("/{id}")
 	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa pessoa) {
 		Pessoa upPessoa = this.pessoaService.updateById(id, pessoa);
@@ -73,12 +77,14 @@ public class PessoaResource {
 		return ResponseEntity.ok(upPessoa);
 	}
 	
+	@Operation(summary = "(Remove do Banco de Dados os dados de uma Pessoa por ID)")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Optional<Pessoa>> delete(@PathVariable Long id) {
 		this.pessoaService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	@Operation(summary = "(Adiciona no Banco de Dados um novo Contato a uma Pessoa por ID da pessoa)")
 	@PostMapping("/{id}/contatos")
 	public ResponseEntity<Contato> saveContato(@PathVariable Long id, @RequestBody Contato contato) {
 		Contato newContato = this.pessoaService.saveContatoByIdPessoa(id, contato);
@@ -87,6 +93,7 @@ public class PessoaResource {
 		return ResponseEntity.ok(newContato);	
 	}
 	
+	@Operation(summary = "(Lista todos os Contatos do Banco de Dados de uma Pessoa por ID da pessoa)")
 	@GetMapping("/{idPessoa}/contatos")
 	public ResponseEntity<List<Contato>> getAllContatosByPessoa(@PathVariable Long idPessoa) {
 		List<Contato> contatos = this.pessoaService.getAllContatosByIdPessoa(idPessoa);

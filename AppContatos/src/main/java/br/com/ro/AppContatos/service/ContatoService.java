@@ -18,14 +18,11 @@ public class ContatoService implements ContatoServiceInterface {
 	public ContatoService(ContatoRepository contatoRepository) {
 		this.contatoRepository =  contatoRepository;
 	}
-	
-
 
 	@Override
 	public Optional<Contato> getById(Long id) {
 		return this.contatoRepository.findById(id);
 	}
-
 
 	@Override
 	public Contato updateById(Long id, Contato contato) {

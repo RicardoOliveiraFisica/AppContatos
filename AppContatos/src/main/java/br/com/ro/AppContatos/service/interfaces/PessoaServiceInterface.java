@@ -8,6 +8,7 @@ import br.com.ro.AppContatos.model.Pessoa;
 import br.com.ro.AppContatos.record.PessoaRecord;
 
 public interface PessoaServiceInterface {
+	
 	Pessoa save(Pessoa pessoa);
 	Optional<Pessoa> getById(Long id);
 	Optional<PessoaRecord> getByIdMalaDireta(Long id);
@@ -16,4 +17,5 @@ public interface PessoaServiceInterface {
 	void deleteById(Long id);
 	Contato saveContatoByIdPessoa(Long idPessoa, Contato contato);
 	List<Contato> getAllContatosByIdPessoa(Long idPessoa);
+	
 }

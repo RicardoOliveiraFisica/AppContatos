@@ -34,8 +34,7 @@ public class PessoaService implements PessoaServiceInterface {
 	@Override
 	public Optional<Pessoa> getById(Long id) {
 		return this.pessoaRepository.findById(id);
-	}
-	
+	}	
 
 	@Override
 	public Optional<PessoaRecord> getByIdMalaDireta(Long id) {
@@ -91,8 +90,7 @@ public class PessoaService implements PessoaServiceInterface {
 			return this.contatoRepository.save(contato);
 		}
 		return contato;
-	}
-	
+	}	
 
 	@Override
 	public List<Contato> getAllContatosByIdPessoa(Long idPessoa) {

@@ -32,9 +32,6 @@ public class Pessoa {
 	@Column(nullable = true)
 	private String uf;
 	
-//	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)//, orphanRemoval=true)	
-//	private List<Contato> contatos;
-
 	public Pessoa() {}
 	
 	public Pessoa(Long id, String nome, String endereco, String cep, String cidade, String uf) {
@@ -110,15 +107,5 @@ public class Pessoa {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(id, other.id);
 	}
-
-/*	
-	public List<Contato> getContatos() {
-		return contatos;
-	}
-
-	public void setContatos(List<Contato> contatos) {
-		this.contatos = contatos;
-	}	
-*/ 
 	
 }
