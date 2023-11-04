@@ -39,8 +39,11 @@ public class PessoaService implements PessoaServiceInterface {
 	@Override
 	public Optional<PessoaRecord> getByIdMalaDireta(Long id) {
 		Optional<Pessoa> pessoa = this.pessoaRepository.findById(id);
-		PessoaRecord pessoaDTO = new PessoaRecord(pessoa.get());
-		return Optional.of(pessoaDTO);
+		if (pessoa.isPresent()) {
+			PessoaRecord pessoaDTO = new PessoaRecord(pessoa.get());
+			return Optional.of(pessoaDTO);
+		}
+		return null;
 	}
 
 	@Override
