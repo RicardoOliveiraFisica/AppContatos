@@ -44,5 +44,5 @@ Acesse e execute a class AppContatosApplication
 
 Pronto. A aplicação está disponível em http://localhost:8080
 
-E seus endpoints estão disponíveis pelo swagger em http://localhost:8080/swagger-ui/index.html
+Sua documentação e endpoints estão disponíveis pelo swagger em http://localhost:8080/swagger-ui/index.html
 
